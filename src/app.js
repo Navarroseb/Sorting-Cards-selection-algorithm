@@ -107,17 +107,20 @@ function sortCards() {
     selectionSort(cardList);
   });
 }
-function selectionSort(inputArr) {
-  for (let i = 0; i < inputArr.length - 1; i++) {
-    let minIndex = i;
-    for (let j = i + 1; j < inputArr.length; j++) {
-      if (inputArr[j] < inputArr[minIndex]) {
-        minIndex = j;
+function selectionSort(arr) {
+  let min = 0;
+  let contador = 0;
+  while (min < arr.length - 1) {
+    for (let i = min + 1; i < arr.length; i++) {
+      if (arr[min].number > arr[i].number) {
+        let aux = arr[min];
+        arr[min] = arr[i];
+        arr[i] = aux;
+        drawCards(cardList, contador);
+        contador++;
       }
     }
-    const temp = inputArr[i];
-    inputArr[i] = inputArr[minIndex];
-    inputArr[minIndex] = temp;
+    min++;
   }
-  return drawCards(inputArr);
+  return arr;
 }
